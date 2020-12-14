@@ -1,5 +1,6 @@
 import 'package:expense_calculator/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(MyApp());
@@ -106,7 +107,7 @@ class MyHomePage extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(bottom: 5),
                                     child: Text(
-                                      '\€ ' + tx.amount.toString(),
+                                      '€ ${tx.amount}',
                                       style: TextStyle(
                                           color: Colors.orange[300],
                                           fontSize: 15,
@@ -114,11 +115,8 @@ class MyHomePage extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    tx.date.day.toString() +
-                                        "." +
-                                        tx.date.month.toString() +
-                                        "." +
-                                        tx.date.year.toString(),
+                                    //intl 0.16.1
+                                    DateFormat.MMMMEEEEd().format(tx.date),
                                     style: TextStyle(
                                         color: Colors.orange[300],
                                         fontSize: 12,
