@@ -30,14 +30,32 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[900],
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          shadowColor: Colors.orange[300],
-          title: Text(
-            'Weekly Expenses Calculator',
-            style: TextStyle(
-                color: Colors.orange[300], fontWeight: FontWeight.w900),
+        appBar: PreferredSize(
+          child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0, 3))
+              ],
+            ),
+            child: AppBar(
+              backgroundColor: Colors.black,
+              elevation: 0.0,
+              title: Text(
+                "Weekly Expenses Calculator",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.orange[300],
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
           ),
+          preferredSize: Size.fromHeight(kToolbarHeight),
         ),
         body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -53,8 +71,18 @@ class MyHomePage extends StatelessWidget {
                 children: transcation.map((tx) {
                   return Container(
                     width: double.infinity,
-                    padding: EdgeInsets.only(left: 15, right: 15),
+                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 10),
                     child: Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 0,
+                            blurRadius: 5,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                      ),
                       child: Card(
                         color: Colors.black,
                         child: Row(
@@ -66,31 +94,38 @@ class MyHomePage extends StatelessWidget {
                                 tx.title,
                                 style: TextStyle(
                                     color: Colors.orange[300],
-                                    fontSize: 18,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.w900),
                               ),
                             ),
-                            Column(
-                              children: [
-                                Text(
-                                  '\€ ' + tx.amount.toString(),
-                                  style: TextStyle(
-                                      color: Colors.orange[300],
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w900),
-                                ),
-                                Text(
-                                  tx.date.day.toString() +
-                                      "." +
-                                      tx.date.month.toString() +
-                                      "." +
-                                      tx.date.year.toString(),
-                                  style: TextStyle(
-                                      color: Colors.orange[300],
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w300),
-                                ),
-                              ],
+                            Container(
+                              padding: EdgeInsets.only(top: 8, bottom: 8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 5),
+                                    child: Text(
+                                      '\€ ' + tx.amount.toString(),
+                                      style: TextStyle(
+                                          color: Colors.orange[300],
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w900),
+                                    ),
+                                  ),
+                                  Text(
+                                    tx.date.day.toString() +
+                                        "." +
+                                        tx.date.month.toString() +
+                                        "." +
+                                        tx.date.year.toString(),
+                                    style: TextStyle(
+                                        color: Colors.orange[300],
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w300),
+                                  ),
+                                ],
+                              ),
                             )
                           ],
                         ),
