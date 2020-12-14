@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 class NewTransaction extends StatelessWidget {
+  final Function addNewTransaction;
+
   // String itemInput;
   // String amountInput;
-  final itemController = TextEditingController();
+  final titleController = TextEditingController();
   final amountController = TextEditingController();
+  NewTransaction(this.addNewTransaction);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,7 +32,7 @@ class NewTransaction extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8.0, bottom: 4),
               child: TextField(
                 //   onChanged: (value) => itemInput = value,
-                controller: itemController,
+                controller: titleController,
                 cursorColor: Colors.orange[300],
                 decoration: InputDecoration(
                   enabledBorder: UnderlineInputBorder(
@@ -88,7 +91,12 @@ class NewTransaction extends StatelessWidget {
                           width: 1,
                           style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(10)),
-                  onPressed: () {},
+                  onPressed: () {
+                    addNewTransaction(
+                      titleController.text,
+                      double.parse(amountController.text),
+                    );
+                  },
                   child: Text(
                     'ADD',
                     style: TextStyle(
