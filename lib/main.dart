@@ -29,6 +29,10 @@ class MyHomePage extends StatelessWidget {
         id: 't3', title: 'For kids', amount: 30.24, date: DateTime.now()),
   ];
 
+  // String itemInput;
+  // String amountInput;
+  final itemController = TextEditingController();
+  final amountController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -157,6 +161,8 @@ class MyHomePage extends StatelessWidget {
                       width: 130,
                       padding: const EdgeInsets.only(left: 8.0, bottom: 4),
                       child: TextField(
+                        //   onChanged: (value) => itemInput = value,
+                        controller: itemController,
                         cursorColor: Colors.orange[300],
                         decoration: InputDecoration(
                           enabledBorder: UnderlineInputBorder(
@@ -180,6 +186,8 @@ class MyHomePage extends StatelessWidget {
                       width: 130,
                       padding: const EdgeInsets.only(left: 8.0, bottom: 4),
                       child: TextField(
+                        //  onChanged: (value) => amountInput = value,
+                        controller: amountController,
                         cursorColor: Colors.orange[300],
                         decoration: InputDecoration(
                           enabledBorder: UnderlineInputBorder(
