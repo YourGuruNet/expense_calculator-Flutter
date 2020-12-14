@@ -22,6 +22,8 @@ class MyHomePage extends StatelessWidget {
         id: 't1', title: 'new shoes', amount: 15.35, date: DateTime.now()),
     Transcation(
         id: 't2', title: 'Dinners', amount: 12.24, date: DateTime.now()),
+    Transcation(
+        id: 't3', title: 'For kids', amount: 30.24, date: DateTime.now()),
   ];
 
   @override
@@ -38,9 +40,23 @@ class MyHomePage extends StatelessWidget {
                   elevation: 5,
                 ),
               ),
-              Card(
-                child: Text('List'),
-              )
+              Column(
+                children: transcation.map((tx) {
+                  return Container(
+                    width: double.infinity,
+                    child: Card(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(tx.title),
+                          Text(tx.amount.toString()),
+                          Text(tx.date.toString())
+                        ],
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
             ]));
   }
 }
