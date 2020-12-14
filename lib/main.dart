@@ -49,8 +49,16 @@ class MyHomePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(tx.title),
-                          Text(tx.amount.toString()),
-                          Text(tx.date.toString())
+                          Column(
+                            children: [
+                              Text('\€ ' + tx.amount.toString()),
+                              Text(tx.date.day.toString() +
+                                  "." +
+                                  tx.date.month.toString() +
+                                  "." +
+                                  tx.date.year.toString()),
+                            ],
+                          )
                         ],
                       ),
                     ),
