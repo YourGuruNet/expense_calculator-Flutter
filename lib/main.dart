@@ -1,3 +1,4 @@
+import 'package:expense_calculator/transaction.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,21 +17,30 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  final List<Transcation> transcation = [
+    Transcation(
+        id: 't1', title: 'new shoes', amount: 15.35, date: DateTime.now()),
+    Transcation(
+        id: 't2', title: 'Dinners', amount: 12.24, date: DateTime.now()),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(),
-        body: Column(children: <Widget>[
-          Container(
-            width: double.infinity,
-            child: Card(
-              child: Text('Chart'),
-              elevation: 5,
-            ),
-          ),
-          Card(
-            child: Text('List'),
-          )
-        ]));
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                width: double.infinity,
+                child: Card(
+                  child: Text('Chart'),
+                  elevation: 5,
+                ),
+              ),
+              Card(
+                child: Text('List'),
+              )
+            ]));
   }
 }
