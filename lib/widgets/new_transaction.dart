@@ -7,7 +7,23 @@ class NewTransaction extends StatelessWidget {
   // String amountInput;
   final titleController = TextEditingController();
   final amountController = TextEditingController();
+
   NewTransaction(this.addNewTransaction);
+
+  void submitDate() {
+    final enteredTitle = titleController.text;
+    final enteredAmount = double.parse(amountController.text);
+    //Stop if empty
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+      return;
+    }
+
+    addNewTransaction(
+      enteredTitle,
+      enteredAmount,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,6 +47,7 @@ class NewTransaction extends StatelessWidget {
               width: 130,
               padding: const EdgeInsets.only(left: 8.0, bottom: 4),
               child: TextField(
+                onSubmitted: (_) => submitDate,
                 style: new TextStyle(color: Colors.orange[300]),
                 controller: titleController,
                 cursorColor: Colors.orange[300],
@@ -56,6 +73,8 @@ class NewTransaction extends StatelessWidget {
               width: 130,
               padding: const EdgeInsets.only(left: 8.0, bottom: 4),
               child: TextField(
+                keyboardType: TextInputType.number,
+                onSubmitted: (_) => submitDate(),
                 style: new TextStyle(color: Colors.orange[300]),
                 controller: amountController,
                 cursorColor: Colors.orange[300],
@@ -91,12 +110,7 @@ class NewTransaction extends StatelessWidget {
                           width: 1,
                           style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(10)),
-                  onPressed: () {
-                    addNewTransaction(
-                      titleController.text,
-                      double.parse(amountController.text),
-                    );
-                  },
+                  onPressed: submitDate,
                   child: Text(
                     'ADD',
                     style: TextStyle(
