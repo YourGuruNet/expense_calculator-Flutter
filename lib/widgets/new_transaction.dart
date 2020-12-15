@@ -31,7 +31,7 @@ class NewTransaction extends StatelessWidget {
               width: 130,
               padding: const EdgeInsets.only(left: 8.0, bottom: 4),
               child: TextField(
-                //   onChanged: (value) => itemInput = value,
+                style: new TextStyle(color: Colors.orange[300]),
                 controller: titleController,
                 cursorColor: Colors.orange[300],
                 decoration: InputDecoration(
@@ -56,7 +56,7 @@ class NewTransaction extends StatelessWidget {
               width: 130,
               padding: const EdgeInsets.only(left: 8.0, bottom: 4),
               child: TextField(
-                //  onChanged: (value) => amountInput = value,
+                style: new TextStyle(color: Colors.orange[300]),
                 controller: amountController,
                 cursorColor: Colors.orange[300],
                 decoration: InputDecoration(
