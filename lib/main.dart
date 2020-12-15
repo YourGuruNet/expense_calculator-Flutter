@@ -48,18 +48,20 @@ class MyHomePage extends StatelessWidget {
         ),
         preferredSize: Size.fromHeight(kToolbarHeight),
       ),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Container(
-              width: double.infinity,
-              child: Card(
-                child: Text('Chart'),
-                elevation: 5,
+      body: SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                width: double.infinity,
+                child: Card(
+                  child: Text('Chart'),
+                  elevation: 5,
+                ),
               ),
-            ),
-            UserTransactions(),
-          ]),
+              UserTransactions(),
+            ]),
+      ),
     );
   }
 }
