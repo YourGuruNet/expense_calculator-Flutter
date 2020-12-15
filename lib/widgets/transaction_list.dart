@@ -10,9 +10,8 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 500,
-      child: SingleChildScrollView(
-        child: Column(
-          children: userTransactions.map((tx) {
+      child: ListView.builder(
+          itemBuilder: (ctx, index) {
             return Container(
               width: double.infinity,
               padding: EdgeInsets.only(left: 15, right: 15, bottom: 10),
@@ -35,7 +34,7 @@ class TransactionList extends StatelessWidget {
                         width: 150,
                         padding: EdgeInsets.only(left: 15, right: 20),
                         child: Text(
-                          tx.title,
+                          userTransactions[index].title,
                           style: TextStyle(
                               color: Colors.orange[300],
                               fontSize: 20,
@@ -50,7 +49,7 @@ class TransactionList extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 5),
                               child: Text(
-                                '€ ${tx.amount}',
+                                '€ ${userTransactions[index].amount}',
                                 style: TextStyle(
                                     color: Colors.orange[300],
                                     fontSize: 15,
@@ -59,7 +58,8 @@ class TransactionList extends StatelessWidget {
                             ),
                             Text(
                               //intl 0.16.1
-                              DateFormat.MMMMEEEEd().format(tx.date),
+                              DateFormat.MMMMEEEEd()
+                                  .format(userTransactions[index].date),
                               style: TextStyle(
                                   color: Colors.orange[300],
                                   fontSize: 12,
@@ -73,9 +73,8 @@ class TransactionList extends StatelessWidget {
                 ),
               ),
             );
-          }).toList(),
-        ),
-      ),
+          },
+          itemCount: userTransactions.length),
     );
   }
 }
