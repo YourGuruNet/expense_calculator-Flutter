@@ -43,7 +43,6 @@ class MyHomePage extends StatelessWidget {
                 style: GoogleFonts.architectsDaughter(
                   textStyle: TextStyle(
                     color: Colors.orange[300],
-                    fontWeight: FontWeight.w900,
                     letterSpacing: 2.5,
                   ),
                 )),
