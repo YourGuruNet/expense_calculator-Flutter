@@ -10,7 +10,7 @@ class NewTransaction extends StatelessWidget {
 
   NewTransaction(this.addNewTransaction);
 
-  void submitDate() {
+  void _submitDate() {
     final enteredTitle = titleController.text;
     final enteredAmount = double.parse(amountController.text);
     //Stop if empty
@@ -26,6 +26,14 @@ class NewTransaction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _showDatePicker() {
+      showDatePicker(
+          context: context,
+          initialDate: DateTime.now(),
+          firstDate: DateTime(2020),
+          lastDate: DateTime.now());
+    }
+
     return Container(
       decoration: BoxDecoration(
         boxShadow: [
@@ -49,7 +57,7 @@ class NewTransaction extends StatelessWidget {
                   width: 160,
                   padding: const EdgeInsets.only(left: 8.0, bottom: 4),
                   child: TextField(
-                    onSubmitted: (_) => submitDate,
+                    onSubmitted: (_) => _submitDate,
                     style: new TextStyle(color: Colors.orange[300]),
                     controller: titleController,
                     cursorColor: Colors.orange[300],
@@ -76,7 +84,7 @@ class NewTransaction extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 8.0, bottom: 4),
                   child: TextField(
                     keyboardType: TextInputType.number,
-                    onSubmitted: (_) => submitDate(),
+                    onSubmitted: (_) => _submitDate(),
                     style: new TextStyle(color: Colors.orange[300]),
                     controller: amountController,
                     cursorColor: Colors.orange[300],
@@ -113,7 +121,8 @@ class NewTransaction extends StatelessWidget {
                     ),
                   ),
                   FlatButton(
-                      onPressed: () {},
+                      onPressed: _showDatePicker,
+                      splashColor: Colors.orange[300],
                       child: Text(
                         'Choose Date',
                         style: TextStyle(
@@ -133,7 +142,7 @@ class NewTransaction extends StatelessWidget {
                                 width: 1,
                                 style: BorderStyle.solid),
                             borderRadius: BorderRadius.circular(10)),
-                        onPressed: submitDate,
+                        onPressed: _submitDate,
                         child: Text(
                           'ADD',
                           style: TextStyle(
