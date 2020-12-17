@@ -1,14 +1,25 @@
+import 'package:intl/intl.dart';
+
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
+class NewTransaction extends StatefulWidget {
   final Function addNewTransaction;
 
   // String itemInput;
   // String amountInput;
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
 
   NewTransaction(this.addNewTransaction);
+
+  @override
+  _NewTransactionState createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
+  final titleController = TextEditingController();
+
+  final amountController = TextEditingController();
+
+  DateTime _selectedDate;
 
   void _submitDate() {
     final enteredTitle = titleController.text;
@@ -18,22 +29,30 @@ class NewTransaction extends StatelessWidget {
       return;
     }
 
-    addNewTransaction(
+    widget.addNewTransaction(
       enteredTitle,
       enteredAmount,
     );
   }
 
+  void _showDatePicker() {
+    showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2019),
+            lastDate: DateTime.now())
+        .then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+      setState(() {
+        _selectedDate = pickedDate;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    void _showDatePicker() {
-      showDatePicker(
-          context: context,
-          initialDate: DateTime.now(),
-          firstDate: DateTime(2020),
-          lastDate: DateTime.now());
-    }
-
     return Container(
       decoration: BoxDecoration(
         boxShadow: [
@@ -115,7 +134,9 @@ class NewTransaction extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    'No Date Chosen',
+                    _selectedDate == null
+                        ? 'No Date Chosen'
+                        : DateFormat.yMd().format(_selectedDate),
                     style: TextStyle(
                       color: Colors.orange[300],
                     ),
