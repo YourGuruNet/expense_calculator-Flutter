@@ -1,5 +1,6 @@
 import 'package:expense_calculator/widgets/user_transactions.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
@@ -37,14 +38,15 @@ class MyHomePage extends StatelessWidget {
           child: AppBar(
             backgroundColor: Colors.black,
             elevation: 0.0,
-            title: Text(
-              "Weekly Expenses Calculator",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.orange[300],
-                fontWeight: FontWeight.w900,
-              ),
-            ),
+            title: Text("Weekly Expenses Calculator",
+                textAlign: TextAlign.center,
+                style: GoogleFonts.architectsDaughter(
+                  textStyle: TextStyle(
+                    color: Colors.orange[300],
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 2.5,
+                  ),
+                )),
           ),
         ),
         preferredSize: Size.fromHeight(kToolbarHeight),
