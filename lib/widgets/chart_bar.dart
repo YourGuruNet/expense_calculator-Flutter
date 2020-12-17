@@ -18,11 +18,14 @@ class ChartBar extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          FittedBox(
-            child: Text(
-              '\$ ${amount.toStringAsFixed(0)} ',
-              style: TextStyle(
-                color: Colors.orange[300],
+          Container(
+            height: 20,
+            child: FittedBox(
+              child: Text(
+                '\$ ${amount.toStringAsFixed(0)} ',
+                style: TextStyle(
+                  color: Colors.orange[300],
+                ),
               ),
             ),
           ),
