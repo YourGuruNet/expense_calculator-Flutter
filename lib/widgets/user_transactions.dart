@@ -2,6 +2,7 @@ import 'package:expense_calculator/models/transaction.dart';
 import 'package:expense_calculator/widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
 
+import 'chart.dart';
 import 'new_transaction.dart';
 
 class UserTransactions extends StatefulWidget {
@@ -32,10 +33,21 @@ class _UserTransactionsState extends State<UserTransactions> {
     });
   }
 
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((tx) {
+      return tx.date.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Chart(_recentTransactions),
         TransactionList(_userTransactions),
         NewTransaction(_addNewTransaction),
       ],
