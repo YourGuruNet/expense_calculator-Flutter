@@ -37,14 +37,6 @@ class MyHomePage extends StatelessWidget {
           child: AppBar(
             backgroundColor: Colors.black,
             elevation: 0.0,
-            actions: [
-              IconButton(
-                icon: Icon(Icons.add),
-                color: Colors.orange[300],
-                iconSize: 30,
-                onPressed: () {},
-              )
-            ],
             title: Text(
               "Weekly Expenses Calculator",
               textAlign: TextAlign.center,
