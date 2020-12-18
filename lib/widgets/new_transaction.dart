@@ -33,6 +33,11 @@ class _NewTransactionState extends State<NewTransaction> {
     }
 
     widget.addNewTransaction(enteredTitle, enteredAmount, _selectedDate);
+    titleController.clear();
+    amountController.clear();
+    setState(() {
+      _selectedDate = null;
+    });
   }
 
   void _showDatePicker() {
