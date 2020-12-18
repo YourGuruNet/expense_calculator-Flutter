@@ -7,7 +7,8 @@ import 'package:intl/intl.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> userTransactions;
-  TransactionList(this.userTransactions);
+  final Function _deleteTransaction;
+  TransactionList(this.userTransactions, this._deleteTransaction);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class TransactionList extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    height: 300,
+                    height: 250,
                     child: Image.asset(
                       'assets/images/waiting.png',
                       fit: BoxFit.cover,
@@ -55,10 +56,11 @@ class TransactionList extends StatelessWidget {
                     child: Card(
                       color: Colors.black,
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            width: 150,
-                            padding: EdgeInsets.only(left: 15, right: 20),
+                            width: 140,
+                            padding: EdgeInsets.only(left: 15),
                             child: Text(
                               userTransactions[index].title,
                               style: TextStyle(
@@ -93,6 +95,13 @@ class TransactionList extends StatelessWidget {
                                 ),
                               ],
                             ),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.delete),
+                            color: Colors.deepOrange,
+                            iconSize: 25,
+                            onPressed: () =>
+                                _deleteTransaction(userTransactions[index].id),
                           )
                         ],
                       ),
